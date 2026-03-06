@@ -4,28 +4,504 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Trehan AI</title>
+  <meta
+    name="description"
+    content="Trehan AI helps organizations evaluate, develop, and communicate AI systems with technical depth and practical business judgment."
+  />
   <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --text: #111111;
+      --muted: #5b5b5b;
+      --border: #dddddd;
+      --accent: #111111;
+      --max-width: 980px;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 720px;
-      margin: 80px auto;
-      padding: 0 20px;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
-    h1 { margin-bottom: 0.25rem; }
-    p { color: #444; }
-    .box {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 24px;
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(247, 247, 245, 0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .hero {
+      padding: 5.5rem 0 4.5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.4rem);
+      margin-bottom: 1rem;
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin-bottom: 0.9rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-copy p {
+      font-size: 1.1rem;
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+    }
+
+    .hero-card p:last-child,
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-intro {
+      max-width: 60ch;
+      margin-bottom: 2rem;
+    }
+
+    .grid-3,
+    .grid-2 {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    ul.clean-list {
+      padding-left: 1.1rem;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    ul.clean-list li + li {
+      margin-top: 0.55rem;
+    }
+
+    .footer {
+      padding: 2rem 0 4rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .small {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 840px) {
+      .hero-inner,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Hello from Trehan AI</h1>
-    <p>This is the first live version of the site.</p>
-    <p>Next step: replace this with real copy.</p>
-  </div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Trehan AI</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#focus">Focus Areas</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Applied AI advisory and development</span>
+          <h1>Applied AI with technical depth and practical business judgment.</h1>
+          <p>
+            Trehan AI helps organizations evaluate, develop, and communicate AI
+            systems that are credible, effective, and grounded in real-world constraints.
+          </p>
+          <p>
+            We work at the intersection of technical rigor, product execution,
+            and clear stakeholder communication.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:hello@trehanai.com">Get in touch</a>
+            <a class="button secondary" href="#services">See what we do</a>
+          </div>
+        </div>
+
+        <aside class="card hero-card" aria-label="Summary">
+          <h3>What we bring</h3>
+          <p>
+            A grounded view of where AI can create real value, where it is
+            likely to fall short, and how to communicate that clearly.
+          </p>
+          <ul class="clean-list">
+            <li>Applied AI strategy and technical development</li>
+            <li>Investor and founder support around feasibility and risk</li>
+            <li>Translation of frontier AI into practical decisions</li>
+            <li>Tailored engagements to your project style </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-intro">
+          <h2>What we do</h2>
+          <p>
+            We help teams make better decisions about AI, build systems that fit
+            the problem, and communicate technical realities in terms decision-makers
+            can actually use.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>AI Strategy</h3>
+            <p>
+              Identify where AI can create real value, what data and workflows
+              are required, and where expectations should be adjusted before time
+              and budget are committed.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Technical Development</h3>
+            <p>
+              Support tailored development efforts across applied AI use cases,
+              including systems that involve software workflows, models, and
+              deployment considerations unique to each engagement.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Investor and Founder Support</h3>
+            <p>
+              Clarify technical feasibility, implementation risk, and model
+              limitations in language that supports fundraising, diligence,
+              and strategic decision-making.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Why Trehan AI</h2>
+          <p>
+            AI is here to stay. We support experts across industries to achieve their project goals. 
+            We combine deep technical curiosity with a focus on real deployment,
+            clear communication, and commercially relevant judgment.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Technically serious, commercially grounded</h3>
+            <p>
+              We understand the importance of your work. That's why dozens of businesses
+              trust us to advance their business objectives.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Translation across audiences</h3>
+            <p>
+              We help bridge technical teams, operators, founders, and investors
+              so that AI decisions are aligned with ground truth.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Current on frontier developments</h3>
+            <p>
+              We maintain an active interest in academic literature and emerging
+              techniques while keeping our focus on applied outcomes.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Tailored engagements</h3>
+            <p>
+              Your project deserves attention. We adapt the work to the problem,
+              the constraints, and the people involved to maximize impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Focus areas</h2>
+          <p>
+            Our interests span practical AI systems and the surrounding judgment
+            needed to deploy them responsibly and effectively.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Applied AI systems</h3>
+            <ul class="clean-list">
+              <li>Computer vision</li>
+              <li>IoT-enabled applications</li>
+              <li>Workflow automation and decision support</li>
+              <li>Explainable and interpretable AI</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Advisory and communication</h3>
+            <ul class="clean-list">
+              <li>Technical diligence</li>
+              <li>Feasibility and risk assessment</li>
+              <li>Research translation for practical use</li>
+              <li>Stakeholder and investor communication</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Team</h2>
+          <p>
+            Trehan AI brings together perspectives across technical development,
+            applied AI research, and investor-facing communication.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Damini Trehan</h3>
+            <p>
+              Brings strength in investor communication, institutional perspective,
+              and capital-facing conversations around technology, risk, and credibility.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Ritwik Trehan</h3>
+            <p>
+              Brings strength in software development, technical execution,
+              and applied AI systems with a focus on practical implementation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <h2>Interested in collaborating?</h2>
+            <p>
+              We are happy to explore collaborations, discuss potential projects,
+              or help clarify where AI may or may not fit.
+            </p>
+            <p>
+              Drop us a line if of interest, now or later. AI is here to stay.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Contact</h3>
+            <p>Email: <a href="mailto:damini@trehanai.com">damini@trehanai.com</a></p>
+            <p>Email: <a href="mailto:ritiwk@trehanai.com">ritiwk@trehanai.com</a></p>
+            <p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card">
+          <h2>Tech for Good</h2>
+          <p>
+            We are especially interested in work where technology can produce
+            meaningful social benefit. In select cases, we are open to
+            mission-aligned engagement structures.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="small">Building with warm hearts and clear minds.</div>
+    </div>
+  </footer>
 </body>
 </html>
